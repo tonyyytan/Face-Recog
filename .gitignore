@@ -9,12 +9,6 @@ env/
 .venv/
 *.egg-info/
 
-# Model files (too large for git)
-*.pth
-*.pt
-*.onnx
-*.h5
-
 # IDE
 .vscode/
 .idea/
