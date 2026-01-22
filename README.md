@@ -5,13 +5,13 @@ A machine learning-powered web application that identifies celebrity resemblance
 ## Table of Contents
 
 - [Overview](#overview)
+- [Model Details](#model-details)
 - [Architecture](#architecture)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Reference](#api-reference)
 - [Technology Stack](#technology-stack)
-- [License](#license)
 
 ## Overview
 
@@ -19,19 +19,37 @@ This application provides an interactive interface for users to capture or uploa
 
 ### Screenshots
 
-<!-- Add your screenshots here -->
 | Capture Screen | Results Screen |
 |----------------|----------------|
-| ![Capture](<img width="1860" height="909" alt="image" src="https://github.com/user-attachments/assets/99a8760f-d468-4be8-b1c5-5e64b3e641a7" />
-) | ![Results](<img width="1803" height="906" alt="image" src="https://github.com/user-attachments/assets/1abbc317-14cd-4b09-9b93-ece30948cfba" />
-) |
+| <img width="600" alt="Capture Screen" src="https://github.com/user-attachments/assets/99a8760f-d468-4be8-b1c5-5e64b3e641a7" /> | <img width="600" alt="Results Screen" src="https://github.com/user-attachments/assets/1abbc317-14cd-4b09-9b93-ece30948cfba" /> |
 
-> **Note:** To add screenshots, create a `docs/` folder and add images named `capture-screen.png` and `results-screen.png`.
+## Model Details
 
-### Demo
+The face recognition model is built using **transfer learning** from a pre-trained ResNet18 architecture.
 
-<!-- Add a GIF demo here if available -->
-<!-- ![Demo](docs/demo.gif) -->
+### Training Approach
+
+- **Base Model**: ResNet18 pre-trained on ImageNet (IMAGENET1K_V1)
+- **Modification**: The final fully-connected layer was replaced with a new linear layer to support 17-class classification
+- **Face Detection**: Haar Cascade preprocessing to extract face regions before classification
+- **Data Augmentation**: Random rotation (±10°), horizontal flip, and color jitter
+
+### Training Configuration
+
+| Parameter | Value |
+|-----------|-------|
+| Image Size | 224×224 |
+| Batch Size | 16 |
+| Epochs | 20 |
+| Learning Rate | 0.001 |
+| Optimizer | Adam |
+| Scheduler | ReduceLROnPlateau (factor=0.5, patience=3) |
+
+### Performance
+
+| Metric | Score |
+|--------|-------|
+| **Validation Accuracy** | **90%** |
 
 ## Architecture
 
@@ -63,7 +81,7 @@ Additionally, the model weights file (`cnn_face_model.pth`) must be obtained sep
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/Face-Recog.git
+git clone https://github.com/tonyyytan/Face-Recog.git
 cd Face-Recog
 ```
 
@@ -142,8 +160,7 @@ Content-Type: multipart/form-data
   "face_detected": true,
   "top_predictions": [
     {"celebrity": "Leonardo DiCaprio", "confidence": 0.8723},
-    {"celebrity": "Brad Pitt", "confidence": 0.0891},
-    ...
+    {"celebrity": "Brad Pitt", "confidence": 0.0891}
   ]
 }
 ```
@@ -153,7 +170,7 @@ Content-Type: multipart/form-data
 ### Backend
 - **Framework**: Flask 3.0
 - **ML Framework**: PyTorch 2.x
-- **Model Architecture**: ResNet18 (transfer learning)
+- **Model Architecture**: ResNet18 (fine-tuned)
 - **Face Detection**: OpenCV Haar Cascades
 - **Server**: Gunicorn (production)
 - **Containerization**: Docker
@@ -166,7 +183,7 @@ Content-Type: multipart/form-data
 
 ## Supported Celebrities
 
-The model is trained to recognize the following individuals:
+The model is trained to recognize the following 17 individuals:
 
 | | | | |
 |---|---|---|---|
@@ -198,10 +215,6 @@ Face-Recog/
 ├── .gitignore
 └── README.md
 ```
-
-## License
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 ---
 
