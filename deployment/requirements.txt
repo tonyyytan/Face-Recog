@@ -1,0 +1,15 @@
+# PyTorch and ML
+torch>=2.2.0
+torchvision>=0.17.0
+
+# Image processing
+opencv-python-headless>=4.8.0
+pillow>=10.0.0
+numpy>=1.24.0
+
+# Web framework
+flask>=3.0.0
+flask-cors>=4.0.0
+
+# Production server
+gunicorn>=21.0.0
