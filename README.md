@@ -22,7 +22,9 @@ This application provides an interactive interface for users to capture or uploa
 <!-- Add your screenshots here -->
 | Capture Screen | Results Screen |
 |----------------|----------------|
-| ![Capture](docs/capture-screen.png) | ![Results](docs/results-screen.png) |
+| ![Capture](<img width="1860" height="909" alt="image" src="https://github.com/user-attachments/assets/99a8760f-d468-4be8-b1c5-5e64b3e641a7" />
+) | ![Results](<img width="1803" height="906" alt="image" src="https://github.com/user-attachments/assets/1abbc317-14cd-4b09-9b93-ece30948cfba" />
+) |
 
 > **Note:** To add screenshots, create a `docs/` folder and add images named `capture-screen.png` and `results-screen.png`.
 
