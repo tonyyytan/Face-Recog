@@ -1,5 +1,5 @@
 # Face Recognition Inference Container
-# Multi-stage build for optimized image size
+# Optimized single-stage build
 
 FROM python:3.10-slim
 

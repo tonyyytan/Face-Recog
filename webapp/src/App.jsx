@@ -86,6 +86,7 @@ function App() {
 
   const processImage = async (blob) => {
     setCurrentView('loading')
+    if (userPhotoUrl) URL.revokeObjectURL(userPhotoUrl)
     setUserPhotoUrl(URL.createObjectURL(blob))
 
     try {
@@ -113,6 +114,7 @@ function App() {
 
   const tryAgain = () => {
     setResult(null)
+    if (userPhotoUrl) URL.revokeObjectURL(userPhotoUrl)
     setUserPhotoUrl(null)
     setAnimatedPercentage(0)
     setCurrentView('capture')

@@ -176,7 +176,7 @@ Content-Type: multipart/form-data
 - **Containerization**: Docker
 
 ### Frontend
-- **Framework**: React 18
+- **Framework**: React 19
 - **Build Tool**: Vite 5
 - **Styling**: Tailwind CSS 3
 - **Features**: WebRTC camera access, responsive design
